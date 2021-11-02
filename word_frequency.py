@@ -1,7 +1,7 @@
 import string
 
 STOP_WORDS = [
-    'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has',
+    '', 'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has',
     'he', 'i', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to',
     'were', 'will', 'with'
 ]
@@ -48,7 +48,7 @@ class WordList:
         Removes all stop words from our word list. Expected to
         be run after extract_words.
         """
-        if type(self.text) == str:
+        if type(self.text) is str:
             return print("Please run extract_words first.")
         words_copy = self.text.copy()
         for word in words_copy:
@@ -62,11 +62,17 @@ class WordList:
         extract_words and remove_stop_words. The data structure
         could be a dictionary or another type of object.
         """
+        if type(self.text) is str:
+            return print(
+                "Please run extract_words, followed by remove_step_words."
+            )
+        if 'with' in self.text:
+            return print("Please run remove_stop_words first.")
         word_count = {}
         for word in self.text:
-            if word == '':
-                continue
-            elif word in word_count.keys():
+            # if word == '':
+            #     continue
+            if word in word_count.keys():
                 word_count[word] += 1
             else:
                 word_count[word] = 1
